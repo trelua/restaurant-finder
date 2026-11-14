@@ -42,9 +42,12 @@ decisions made against the local database never reach the real national store.
 - **Sync** from the repository root, after each publish:
   `node --no-network-family-autoselection --dns-result-order=ipv4first --env-file=.env.local sync-online.mjs`
   (the IPv4 flags are the ones bh-os needs on this laptop; about 35 s the first time).
-- **Deploy** from the repository root: `npx vercel deploy --prod`. `.vercelignore` is an
-  allowlist (`web/`, `lib/`, `ui/`): the CLI does not read `.gitignore`, and `data/`
-  holds 8 GB of stores.
+- **Deploy:** since 2026-11-14 the Vercel project is connected to
+  `trelua/restaurant-finder`: a merge to `main` deploys production and other
+  branches get previews (Root Directory `web`, files outside it included). The
+  CLI still works from the repository root (`npx vercel deploy --prod`), where
+  `.vercelignore` is an allowlist (`web/`, `lib/`, `ui/`): the CLI does not read
+  `.gitignore`, and `data/` holds 8 GB of stores.
 - **Sign-in:** Google OAuth web client with the redirect URIs
   `https://restaurants.trelua.com/api/auth/callback/google`,
   `https://restaurant-finder-iota.vercel.app/api/auth/callback/google` and
