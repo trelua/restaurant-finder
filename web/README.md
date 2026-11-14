@@ -33,8 +33,8 @@ decisions made against the local database never reach the real national store.
 - **URL:** <https://restaurants.trelua.com> (added 2026-09-27: a CNAME at Hostinger,
   where trelua.com's DNS lives, to `78e539ce3f31b4e2.vercel-dns-017.com`). Also
   <https://restaurant-finder-iota.vercel.app> and
-  `restaurant-finder-lorenzozanca.vercel.app`. Vercel project `restaurant-finder`,
-  team `lorenzozanca`, Hobby, Root Directory `web`, functions in `fra1`.
+  `restaurant-finder-lorenzozanca.vercel.app` (alias from before the move). Vercel project `restaurant-finder`,
+  team `trelua` (Pro, since 2026-11-14; GitHub `trelua/restaurant-finder`), Root Directory `web`, functions in `fra1`.
 - **Database:** Neon `restaurant-finder` (free plan `free_v3`, AWS eu-central-1),
   created through Vercel's Neon integration, which sets `DATABASE_URL` (pooled) and
   friends on the project. The repository root is linked (`.vercel/`), and
