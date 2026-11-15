@@ -25,8 +25,8 @@ import { currentEmail, unauthorized } from "@/lib/session";
 //   POST   contact/ID            change a contact
 //   DELETE contact/ID?reason=request|retention|mistake             erase a contact
 //   POST   view                  save a view ({ page, name, query }); DELETE view/ID
-//   POST   demo                  create the venue's demo in Pomovi
-//   POST   pomovi-refresh        read every bridged venue's demo state from Pomovi
+//   POST   demo                  create the venue's demo in Pomami
+//   POST   pomovi-refresh        read every bridged venue's demo state from Pomami
 
 export const dynamic = "force-dynamic";
 
@@ -155,7 +155,7 @@ function int(value: string | null, fallback: number) {
   return Number.isFinite(n) ? n : fallback;
 }
 
-// Sends the lead to Pomovi and records the answer. A venue not yet in the pipeline
+// Sends the lead to Pomami and records the answer. A venue not yet in the pipeline
 // is added; the stage moves to "demo requested" unless it is already further on.
 async function requestDemo(index: Index, venueId: string, email: string) {
   const i = index.indexOf(venueId);
@@ -177,7 +177,7 @@ async function requestDemo(index: Index, venueId: string, email: string) {
   if (!entry) await updatePipeline(index, { venue_id: venueId, stage: "demo_requested" }, email);
   else if (entry.stage === "shortlisted") await updatePipeline(index, { venue_id: venueId, stage: "demo_requested" }, email);
   await updatePipeline(index, { venue_id: venueId, event: { kind: "note",
-    note: `Demo ${bridged.created === false ? "already existed" : "created"} in Pomovi: ${bridged.slug}` } }, email);
+    note: `Demo ${bridged.created === false ? "already existed" : "created"} in Pomami: ${bridged.slug}` } }, email);
   await recordPomovi(bridged, email);
   overlayChanged();
   return { pomovi: bridged, ...(await pipelineEntry(venueId)) };

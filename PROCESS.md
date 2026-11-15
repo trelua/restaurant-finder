@@ -1,4 +1,4 @@
-# One process: Italian venue leads for Pomovi
+# One process: Italian venue leads for Pomami
 
 This is the only active delivery plan for restaurant-finder.
 
@@ -7,8 +7,8 @@ This is the only active delivery plan for restaurant-finder.
 The operator set the order on 2026-09-28: enough verified websites exist to start
 selling, so the CRM comes first.
 
-1. **Online lead CRM (primary).** The venues are the leads for Pomovi. Finish the
-   private online app so that a lead becomes a Pomovi demo and moves through the
+1. **Online lead CRM (primary).** The venues are the leads for Pomami. Finish the
+   private online app so that a lead becomes a Pomami demo and moves through the
    pipeline to a customer. See "Online lead CRM" below.
 2. **Website verification (secondary).** Only when the operator asks: run the
    certified reviewer over the remaining known source candidates (step 4 below) in
@@ -50,7 +50,7 @@ the tool for the undecided tail (filter **Undecided**, work down the list).
 
 ## Online lead CRM (operator decision 2026-09-27)
 
-This repository is Pomovi's sales CRM. It runs online and only the operator can reach
+This repository is Pomami's sales CRM. It runs online and only the operator can reach
 it, through Google sign-in (the pattern of the sibling `bh-os`). HubSpot was
 considered and rejected: its free plan allows 10 custom properties in total, cannot
 show the map or the verification state, and its strongest tool (cold email) is largely
@@ -74,8 +74,8 @@ gzipped row, ~7 MB) and changed per-venue review details; 4. copy every CRM tabl
 (`AUTH_OWNER_EMAILS`); `currentEmail()` on every operator data route; `AUTH_DEV_EMAIL` for local
 work, ignored in production. It serves the same `ui/map.html` and `/api/national/*` API
 over the same `LeadIndex`, loaded from the newest snapshot in Neon, plus an overlay of
-pending manual decisions and pipeline stages. Pomovi's two inbound integration paths
-instead require `POMOVI_INBOUND_TOKEN` on every request; they expose only the bounded
+pending manual decisions and pipeline stages. Pomami's two inbound integration paths
+instead require `POMAMI_INBOUND_TOKEN` on every request; they expose only the bounded
 catalogue projection and minimal signup stage events. The laptop server keeps working
 without the CRM.
 
@@ -85,13 +85,13 @@ note) is an event with a date. "Do not contact" is terminal until the operator
 explicitly reopens it. The map filters by stage, and a Pipeline tab lists venues by
 next action date.
 
-**Pomovi bridge.** Keyed on this repo's `venue_id` (stored in Pomovi as
-`venues.source_ref`). The online app calls Pomovi's console with a bearer token:
+**Pomami bridge.** Keyed on this repo's `venue_id` (stored in Pomami as
+`venues.source_ref`). The online app calls Pomami's console with a bearer token:
 `POST /api/bridge/venues` creates (idempotently) a `prospect` with the lead's name and
 website and returns its wizard URL; `GET /api/bridge/venues` returns each bridged
-venue's status, slug, and public URL. The contract and Pomovi's side are in
-`../pomovi/docs/archive/restaurant-finder-bridge.md`. Live since 2026-09-28, with
-`POMOVI_BRIDGE_URL` and `POMOVI_BRIDGE_TOKEN` set here.
+venue's status, slug, and public URL. The contract and Pomami's side are in
+`../pomami/docs/archive/restaurant-finder-bridge.md`. Live since 2026-09-28, with
+the bridge URL and token set here (in production still under their `POMOVI_*` names).
 
 **Before real outreach:** the operator clears the items under "Second purpose, B2B
 prospecting" in `PRIVACY.md` (sign the legitimate-interests assessment, add the purpose
@@ -107,7 +107,7 @@ is first used to contact a venue.
 3. `web/` app: Google sign-in, the map API over the Neon snapshot, manual review into
    `manual_reviews`. Done.
 4. Pipeline API and UI on the venue card, stage filter, Pipeline tab. Done.
-5. Pomovi client behind `POMOVI_BRIDGE_URL` and `POMOVI_BRIDGE_TOKEN`. Done.
+5. Pomami client behind `POMAMI_BRIDGE_URL` and `POMAMI_BRIDGE_TOKEN`. Done.
 6. Operator setup: Google OAuth, Neon (EU), Vercel (root directory `web`), first sync,
    domain `restaurants.trelua.com`. Done 2026-09-27.
 7. Live checks: cold-start time of the map, and a whole-selection CSV export within
@@ -115,26 +115,26 @@ is first used to contact a venue.
    whole-Italy file, ~42 MB, on the live app). Cold start: open.
 8. CRM views: tables, record page, contacts (operator decision 2026-09-28, before the
    bridge). See "CRM views" below. Done: deployed 2026-09-28.
-9. Pomovi side: the two bridge endpoints, built in the Pomovi repository following its
+9. Pomami side: the two bridge endpoints, built in the Pomami repository following its
    plan; then set the two variables here and create one real demo end to end. Done
-   2026-09-28 (Pomovi venue 15; the demo's state read back with Refresh from Pomovi).
-10. Pomovi self-signup integration (operator, 2026-10-17, Pomovi's
+   2026-09-28 (Pomami venue 15; the demo's state read back with Refresh from Pomami).
+10. Pomami self-signup integration (operator, 2026-10-17, Pomami's
     `signup-and-trial` step 2): bounded server-to-server catalogue search and
-    retry-safe signup/build stage notifications. Deployed 2026-10-17 behind Pomovi's
+    retry-safe signup/build stage notifications. Deployed 2026-10-17 behind Pomami's
     gate; Hobby search measured 10.5 s cold, ~0.5 s warm. The town-list extension
     (PR #4) is deployed 2026-10-20, with no database or environment change.
-    Contract and safeguards: `web/README.md` → "Pomovi self-signup catalogue and
+    Contract and safeguards: `web/README.md` → "Pomami self-signup catalogue and
     notifications". Further CRM features remain the operator's choice.
 
 Done means: the operator signs in from a phone, sees all venues with the same counts
 as the laptop map, finds and sorts them in a table, keeps the people they meet as
 contacts, records a manual review that reaches the local store on the next sync, moves
-a venue through the pipeline, and creates its demo in Pomovi.
+a venue through the pipeline, and creates its demo in Pomami.
 
 ### CRM views (step 8)
 
 The map is the geographic view; a CRM also needs the classic one. The operator decided
-on 2026-09-28 to build it before the Pomovi bridge, with contacts and with the table
+on 2026-09-28 to build it before the Pomami bridge, with contacts and with the table
 of all 156,057 leads from the first version, so the architecture serves the whole
 market from the start.
 
@@ -169,7 +169,7 @@ instance.
   by page while scrolling, and only visible rows are rendered. On a phone, each row is
   a compact card.
 - **Venue record** (`/venues/[id]`): properties grouped as Identity, Website and
-  verification, Sales, Pomovi; the contacts; the timeline; actions (stage, next action,
+  verification, Sales, Pomami; the contacts; the timeline; actions (stage, next action,
   log a touch with a contact, review the website). The map's venue card links to it.
 - **Contacts**: every contact with its venue, searchable and sortable, plus a "Due for
   deletion" view of contacts past the retention periods in `PRIVACY.md`.

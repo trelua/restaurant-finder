@@ -1,7 +1,7 @@
 # restaurant-finder
 
 A national map of Italian food venues, their verified websites, and the sales pipeline
-that turns them into Pomovi customers (Pomovi, the sibling repository, builds each
+that turns them into Pomami customers (Pomami, the sibling repository, builds each
 prospect a demo site).
 
 ## The two surfaces
@@ -38,7 +38,7 @@ later reviewer batches never overwrite. The layout works on phones and desktops.
 
 [`PROCESS.md`](PROCESS.md) is the sole active delivery plan. In short:
 
-> First, finish the CRM so that a lead on the map becomes a Pomovi demo and moves
+> First, finish the CRM so that a lead on the map becomes a Pomami demo and moves
 > through the pipeline to a customer. Second, when the operator asks, verify more
 > websites: run the certified LLM reviewer over the remaining known candidates in
 > budgeted batches, then discover URLs for the venues that have none.

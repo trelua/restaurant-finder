@@ -151,7 +151,7 @@ export function VenueRecord({ initial }: { initial: Record_ }) {
               {review.candidates.length ? <ReviewForm venueId={venue.id} review={review} run={run} /> : null}
             </section>
             <section className="card">
-              <h2>Pomovi demo</h2>
+              <h2>Pomami demo</h2>
               <Demo venueId={venue.id} entry={entry} website={website} verified={Boolean(venue.verified_url)}
                 configured={record.pomovi} run={run} />
             </section>
@@ -422,26 +422,26 @@ function Demo({ venueId, entry, website, verified, configured, run }: { venueId:
   if (entry?.pomovi_slug) {
     return (
       <>
-        <p style={{ fontSize: 14 }}>Pomovi: <b>{entry.pomovi_slug}</b> · {entry.pomovi_status}
+        <p style={{ fontSize: 14 }}>Pomami: <b>{entry.pomovi_slug}</b> · {entry.pomovi_status}
           {entry.pomovi_menu_items != null ? ` · ${entry.pomovi_menu_items} menu items` : ""}</p>
         <div className="form-actions">
           {entry.pomovi_public_url ? <a className="btn" href={entry.pomovi_public_url} target="_blank" rel="noopener">Open the demo</a> : null}
-          {entry.pomovi_wizard_url ? <a className="btn" href={entry.pomovi_wizard_url} target="_blank" rel="noopener">Continue in Pomovi</a> : null}
+          {entry.pomovi_wizard_url ? <a className="btn" href={entry.pomovi_wizard_url} target="_blank" rel="noopener">Continue in Pomami</a> : null}
           {configured ? <button className="btn" type="button"
-            onClick={() => run(() => api("/api/crm/pomovi-refresh", { body: {} }), "Read from Pomovi.")}>
-            Refresh from Pomovi</button> : null}
+            onClick={() => run(() => api("/api/crm/pomovi-refresh", { body: {} }), "Read from Pomami.")}>
+            Refresh from Pomami</button> : null}
         </div>
       </>
     );
   }
-  if (!configured) return <p className="note">The Pomovi bridge is not configured yet (POMOVI_BRIDGE_URL, POMOVI_BRIDGE_TOKEN).</p>;
+  if (!configured) return <p className="note">The Pomami bridge is not configured yet (POMAMI_BRIDGE_URL, POMAMI_BRIDGE_TOKEN).</p>;
   if (!website) return <p className="note">No website to build a demo from.</p>;
   return (
     <>
       <p className="note">Builds from {website}{verified ? "" : " (not verified)"}.</p>
       <button className="btn primary" type="button" disabled={entry?.stage === "do_not_contact"}
-        onClick={() => run(() => api("/api/crm/demo", { body: { venue_id: venueId } }), "Demo requested in Pomovi.")}>
-        Create demo in Pomovi</button>
+        onClick={() => run(() => api("/api/crm/demo", { body: { venue_id: venueId } }), "Demo requested in Pomami.")}>
+        Create demo in Pomami</button>
     </>
   );
 }

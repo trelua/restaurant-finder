@@ -39,7 +39,7 @@ compatibility assessment.
 
 **Second purpose, B2B prospecting (operator decision 2026-09-27; not yet cleared).**
 The online lead CRM (`web/`, `PROCESS.md` → "Online lead CRM") uses the same venue
-records to choose and track venues the operator offers Pomovi to, in person or by
+records to choose and track venues the operator offers Pomami to, in person or by
 post. Before the app is used to contact any venue, the controller must: complete and
 sign the legitimate-interests assessment for this purpose (release-gate item 1), add
 it to the public notice (item 2), and record Vercel and Neon below (item 4). Channel
@@ -71,7 +71,7 @@ the legitimate-interests assessment must cover them explicitly. Rules:
   set to lost or do not contact, or 24 months after the last activity with a venue that
   never became a customer. The Contacts page lists the contacts past these dates for
   deletion; the operator reviews that list at least quarterly. For a venue that becomes
-  a Pomovi customer, the customer relationship is governed by Pomovi's own records.
+  a Pomami customer, the customer relationship is governed by Pomami's own records.
 
 Data subjects may include sole traders, named proprietors, or individuals whose
 direct contact details appear on a public venue page. A public business record
@@ -87,7 +87,7 @@ is not automatically outside GDPR.
 | Manual review decisions | Reviewer name (as typed), decision, website, evidence URLs, optional notes, time | Operator, from the map's venue card | Publisher attestations in the national store |
 | National map snapshot and lead exports | Venue name, category, address, phone, coordinates, website state, crawl outcome | National store (Overture Places plus review outcomes) | `*.map-snapshot.json` next to the national store, rebuilt from it; CSV files the operator downloads from the map are kept on the operator's device and are the operator's responsibility |
 | Online copy for the CRM | The map snapshot, per-venue review details (candidates, attestations, crawl assessments, LLM reason and quotes, source record IDs) | `sync-online.mjs` from the national store | Neon Postgres (EU, Frankfurt), the app on Vercel (`fra1`); replaced on each sync, last two snapshots kept |
-| Sales pipeline | Stage, next action and date, lost reason, contacts made (visit, card, letter, call, email, note) with free-text notes and the contact involved, the operator's email as author, Pomovi signup/demo IDs and status | Operator, in the online app; Pomovi's bridge and authenticated self-signup notifications | Neon; copied to `data/online-backups/` on the laptop at every sync (last 30 kept). Notes must not record private details about named people; a person's details belong in their contact record |
+| Sales pipeline | Stage, next action and date, lost reason, contacts made (visit, card, letter, call, email, note) with free-text notes and the contact involved, the operator's email as author, Pomami signup/demo IDs and status | Operator, in the online app; Pomami's bridge and authenticated self-signup notifications | Neon; copied to `data/online-backups/` on the laptop at every sync (last 30 kept). Notes must not record private details about named people; a person's details belong in their contact record |
 | Venue contacts | Name, role at the venue, business phone and email, preferred channel, source of the details, short business notes, author and times | The person (in person, card, call) or the venue's own website, entered by the operator in the online app | Neon `contacts`; copied to `data/online-backups/` at every sync (last 30 kept); deleted on request or at the end of the retention period below |
 | Saved table views | View name and filter/sort settings, author | Operator, in the online app | Neon `saved_views` |
 | Online manual review decisions | As "Manual review decisions", plus the signed-in email | Operator, in the online app | Neon `manual_reviews`, applied to the national store by `sync-online.mjs` |

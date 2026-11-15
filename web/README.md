@@ -62,12 +62,13 @@ restore, which is why every sync also backs up the CRM tables to `data/online-ba
 Hobby is for non-commercial use: move the project to Pro when the app is first used
 to contact a venue.
 
-## Pomovi bridge
+## Pomami bridge
 
-Set `POMOVI_BRIDGE_URL` (e.g. `https://app.pomovi.com`) and `POMOVI_BRIDGE_TOKEN`
-once Pomovi ships `../pomovi/docs/plans/restaurant-finder-bridge.md` (the same token
-as Pomovi's `RESTAURANT_FINDER_BRIDGE_TOKEN`). Then the venue card shows **Create demo
-in Pomovi**, and the Pipeline tab **Refresh from Pomovi** (demo ready when it has a
+Set `POMAMI_BRIDGE_URL` (e.g. `https://console.pomami.com`) and `POMAMI_BRIDGE_TOKEN`
+once Pomami ships `../pomami/docs/archive/restaurant-finder-bridge.md` (the same token
+as Pomami's `RESTAURANT_FINDER_BRIDGE_TOKEN`). Each `POMAMI_*` variable here falls back
+to its name before the rename (`POMOVI_*`). Then the venue card shows **Create demo
+in Pomami**, and the Pipeline tab **Refresh from Pomami** (demo ready when it has a
 menu, won when the venue is active).
 
 ## Security
@@ -75,16 +76,16 @@ menu, won when the venue is active).
 - Google sign-in only; `AUTH_OWNER_EMAILS` is checked at sign-in and again on every
   data request (`lib/session.ts`), so removing an address locks it out at once.
 - Operator API routes answer 401 without an allowed session; the proxy only
-  redirects early. The two Pomovi inbound routes below require their own bearer
+  redirects early. The two Pomami inbound routes below require their own bearer
   credential and never accept a Google session instead. Tiles are cached `private`.
 - The database holds business records, your notes, and your email as author of each
-  change. No passwords, no Pomovi database credentials.
+  change. No passwords, no Pomami database credentials.
 
-## Pomovi self-signup catalogue and notifications
+## Pomami self-signup catalogue and notifications
 
-The inbound integration for Pomovi's `signup-and-trial` project is **live since
-2026-10-17 behind Pomovi's signup gate**. It uses `POMOVI_INBOUND_TOKEN`, a separate, random
-server-only credential from the outbound `POMOVI_BRIDGE_TOKEN`. The inbound
+The inbound integration for Pomami's `signup-and-trial` project is **live since
+2026-10-17 behind Pomami's signup gate**. It uses `POMAMI_INBOUND_TOKEN`, a separate, random
+server-only credential from the outbound `POMAMI_BRIDGE_TOKEN`. The inbound
 value is configured on both servers. Do not put it in
 browser code. Unset/blank: the supported calls return 404; missing/wrong bearer:
 401. A Google session does not admit these calls. Responses use `Cache-Control:
@@ -100,16 +101,16 @@ before loading the catalogue or touching Postgres.
   approved URL. The existing in-memory `LeadIndex` supplies the data; there is no
   additional catalogue database or provider call.
 - `GET /api/pomovi/search?municipality=Treviso&all=1[&province=TV]`: a town's whole
-  list for Pomovi's town-first search (live 2026-10-20), in name order, at most 500
+  list for Pomami's town-first search (live 2026-10-20), in name order, at most 500
   (`TOWN_LIST_LIMIT`), with `truncated: true` when the town has more (Roma, Milano
-  and a few other cities; Pomovi then searches by name within the town). `province`
+  and a few other cities; Pomami then searches by name within the town). `province`
   (two letters) is also accepted by the name search, and tells apart the four names
   two towns share. Same result fields. The town map is built once per instance
   (~0.4 s on the national index), then a list costs its own size.
-- `GET /api/pomovi/search?ref=<encoded-id>`: exact lookup for the Pomovi backend
+- `GET /api/pomovi/search?ref=<encoded-id>`: exact lookup for the Pomami backend
   before trusting a submitted catalogue reference. Returns zero or one result;
   cannot be combined with `q` or `municipality`.
-- `POST /api/pomovi/signups`: JSON `{ref, signup_id, stage}`. `signup_id` is Pomovi's
+- `POST /api/pomovi/signups`: JSON `{ref, signup_id, stage}`. `signup_id` is Pomami's
   positive integer row ID; `stage` is `demo_requested` or `demo_ready`. Extra fields
   and bodies over 4 KB are refused. Send no signup name, email, phone or password.
   Result: `{stage, duplicate}`; unknown venue 404, do-not-contact 409.
@@ -125,7 +126,7 @@ venue. No migration is needed and no manual website-review decision is written.
 
 The response includes `attribution`: the consuming signup UI must display Overture
 Maps Foundation Places (CDLA-Permissive-2.0) and `© OpenStreetMap contributors` with
-the appropriate source links (`../DATA-LICENSING.md`). Pomovi's public API adapts
+the appropriate source links (`../DATA-LICENSING.md`). Pomami's public API adapts
 `website_status` to its UI's `websiteStatus` field.
 
 Local production-mode verification on snapshot `3a86b85efbc5` (156,057 venues):

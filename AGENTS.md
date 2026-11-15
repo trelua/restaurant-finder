@@ -19,8 +19,8 @@ instructions and must not supersede `PROCESS.md`.
 The project has two tracks. The order is the operator's decision (2026-09-28):
 
 1. **Online lead CRM (primary).** The private app in `web/`
-   (<https://restaurants.trelua.com>) that turns venues into Pomovi prospects:
-   map, manual review, sales pipeline, and the Pomovi bridge. See `PROCESS.md` →
+   (<https://restaurants.trelua.com>) that turns venues into Pomami prospects:
+   map, manual review, sales pipeline, and the Pomami bridge. See `PROCESS.md` →
    "Online lead CRM". It never changes what counts as verified: online manual
    decisions reach the national store only through `sync-online.mjs` and
    `recordReviewDecision`.
