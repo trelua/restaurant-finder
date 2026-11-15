@@ -91,7 +91,7 @@ next action date.
 website and returns its wizard URL; `GET /api/bridge/venues` returns each bridged
 venue's status, slug, and public URL. The contract and Pomami's side are in
 `../pomami/docs/archive/restaurant-finder-bridge.md`. Live since 2026-09-28, with
-`POMAMI_BRIDGE_URL` and `POMAMI_BRIDGE_TOKEN` set here.
+the bridge URL and token set here (in production still under their `POMOVI_*` names).
 
 **Before real outreach:** the operator clears the items under "Second purpose, B2B
 prospecting" in `PRIVACY.md` (sign the legitimate-interests assessment, add the purpose
