@@ -115,7 +115,7 @@ export async function pipelineList(index: LeadIndex, stages: string[]) {
   return rows.map((row) => ({ ...row, i: index.indexOf(row.venue_id) }));
 }
 
-/** Records what Pomovi says about a venue's demo; moves the stage forward when it can. */
+/** Records what Pomami says about a venue's demo; moves the stage forward when it can. */
 export async function recordPomovi(venue: BridgedVenue, email: string) {
   const sql = db();
   await sql.begin(async (tx) => {
@@ -133,7 +133,7 @@ export async function recordPomovi(venue: BridgedVenue, email: string) {
       await tx`UPDATE pipeline SET stage = ${next} WHERE venue_id = ${venue.source_ref}`;
       await tx`INSERT INTO pipeline_events (venue_id, kind, stage_from, stage_to, note, created_by)
         VALUES (${venue.source_ref}, 'stage', ${current.stage}, ${next},
-          ${next === "won" ? "Pomovi: the venue is active" : "Pomovi: the demo has a menu"}, ${email})`;
+          ${next === "won" ? "Pomami: the venue is active" : "Pomami: the demo has a menu"}, ${email})`;
     }
   });
 }

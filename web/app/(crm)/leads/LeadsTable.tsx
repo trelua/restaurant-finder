@@ -225,19 +225,19 @@ export function LeadsTable({ initialQuery, initial, meta }: { initialQuery: stri
     await api(`/api/crm/view/${savedActive.id}`, { method: "DELETE" }).catch(() => {});
     loadViews();
   };
-  // Reads every bridged demo's state from Pomovi, then reloads the rows in view so
+  // Reads every bridged demo's state from Pomami, then reloads the rows in view so
   // the Demo column shows it.
   const refreshPomovi = async () => {
-    setNotice("Reading from Pomovi…");
+    setNotice("Reading from Pomami…");
     try {
       const { refreshed } = await api<{ refreshed: number }>("/api/crm/pomovi-refresh", { body: {} });
       pages.current = new Map();
       loading.current = new Set();
       setRange((r) => ({ ...r }));
-      setNotice(`${refreshed} ${refreshed === 1 ? "demo" : "demos"} read from Pomovi.`);
+      setNotice(`${refreshed} ${refreshed === 1 ? "demo" : "demos"} read from Pomami.`);
     } catch (reason) {
       setNotice("");
-      setError(`Pomovi: ${(reason as Error).message}`);
+      setError(`Pomami: ${(reason as Error).message}`);
     }
   };
   // On a phone these go into a "More" menu, so the rows start higher.
@@ -247,7 +247,7 @@ export function LeadsTable({ initialQuery, initial, meta }: { initialQuery: stri
       <button className="btn" type="button" onClick={saveView}>Save view</button>
       {savedActive ? <button className="btn danger" type="button" onClick={deleteView}>Delete view</button> : null}
       <a className="btn" href={`/api/national/export.csv?${filterParams}`} download>CSV</a>
-      {meta.pomovi ? <button className="btn" type="button" onClick={refreshPomovi}>Refresh from Pomovi</button> : null}
+      {meta.pomovi ? <button className="btn" type="button" onClick={refreshPomovi}>Refresh from Pomami</button> : null}
     </>
   );
 

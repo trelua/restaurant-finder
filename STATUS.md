@@ -21,6 +21,12 @@ undecided, 7,417 unreachable, 60,955 not checked, 69,189 no website.
 
 ## Track 1: online lead CRM (primary)
 
+Pomovi was renamed **Pomami** (2026-11-15; `../pomami/docs/plans/pomami-rename.md`).
+The app says Pomami and reads `POMAMI_BRIDGE_URL`, `POMAMI_BRIDGE_TOKEN` and
+`POMAMI_INBOUND_TOKEN`, each falling back to its `POMOVI_*` name. The database columns
+(`pomovi_*`), the `/api/pomovi/*` routes and the `pomovi:self-signup` actor keep their
+names. Dated entries below say Pomovi as written.
+
 Live at <https://restaurants.trelua.com> (also restaurant-finder-iota.vercel.app):
 Vercel project `restaurant-finder` (Hobby, root directory `web`), Neon
 `restaurant-finder` (free plan, eu-central-1), Google sign-in for `AUTH_OWNER_EMAILS`.
@@ -80,7 +86,7 @@ Live checks (`PROCESS.md` step 7):
   load first; not read yet.
 
 Pomovi bridge (2026-09-28, built from this session): steps 1–4 of
-`../pomovi/docs/plans/restaurant-finder-bridge.md` are **deployed** in Pomovi
+`../pomami/docs/archive/restaurant-finder-bridge.md` are **deployed** in Pomovi
 (`cbb5e01`, migration `0069` applied after a verified backup), and this app is
 redeployed (`restaurant-finder-khq5tcjk1`) with `POMOVI_BRIDGE_URL`
 (`https://app.pomovi.com`) and `POMOVI_BRIDGE_TOKEN`, the same value as Pomovi's
@@ -124,7 +130,7 @@ owner's approval for both services. No database or environment changes. Vercel's
 build and typecheck passed; sign-in loads, and the catalogue and operator APIs
 still refuse unauthenticated requests. A positive authenticated town-list check
 remains for the next owner signup; the integration bearer is not stored locally.
-Rollback from this repository: `../pomovi/node_modules/.bin/vercel rollback dpl_DmxnvZ8TA9SzJQrPig1fSAEM3SxE`.
+Rollback from this repository: `../pomami/node_modules/.bin/vercel rollback dpl_DmxnvZ8TA9SzJQrPig1fSAEM3SxE`.
 
 Search projects the existing `LeadIndex` (at most 10 results), including the correct
 URL of pending manual approvals. Notifications are transactional/idempotent, advance

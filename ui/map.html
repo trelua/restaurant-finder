@@ -222,7 +222,7 @@
     <div class="view" id="pipeline" hidden>
       <div class="row" style="margin:8px 0">
         <select id="p-stage" aria-label="Pipeline stage"><option value="">Open stages</option><option value="all">All stages</option></select>
-        <button class="secondary" type="button" id="p-refresh" hidden style="height:44px">Refresh from Pomovi</button>
+        <button class="secondary" type="button" id="p-refresh" hidden style="height:44px">Refresh from Pomami</button>
       </div>
       <div id="p-items"></div>
       <p class="note" id="p-note"></p>
@@ -901,7 +901,7 @@
     var button = this;
     button.disabled = true;
     api('/api/crm/pomovi-refresh', {}).then(function (data) {
-      toast(data.refreshed + ' demos read from Pomovi'); reloadMeta(); loadPipeline();
+      toast(data.refreshed + ' demos read from Pomami'); reloadMeta(); loadPipeline();
     }).catch(function (error) { toast(error.message); }).then(function () { button.disabled = false; });
   });
 
@@ -937,17 +937,17 @@
     }
     html.push('<h3>Demo</h3>');
     if (entry && entry.pomovi_slug) {
-      html.push('<p>Pomovi: <b>' + esc(entry.pomovi_slug) + '</b> · ' + esc(entry.pomovi_status || '') +
+      html.push('<p>Pomami: <b>' + esc(entry.pomovi_slug) + '</b> · ' + esc(entry.pomovi_status || '') +
         (entry.pomovi_menu_items != null ? ' · ' + number(entry.pomovi_menu_items) + ' menu items' : '') + '</p><div class="links">' +
         (entry.pomovi_public_url ? '<a href="' + esc(entry.pomovi_public_url) + '" target="_blank" rel="noopener">Open the demo</a>' : '') +
-        (entry.pomovi_wizard_url ? '<a href="' + esc(entry.pomovi_wizard_url) + '" target="_blank" rel="noopener">Continue in Pomovi</a>' : '') + '</div>');
+        (entry.pomovi_wizard_url ? '<a href="' + esc(entry.pomovi_wizard_url) + '" target="_blank" rel="noopener">Continue in Pomami</a>' : '') + '</div>');
     } else if (!meta.crm.pomovi) {
-      html.push('<p class="note">The Pomovi bridge is not configured yet (POMOVI_BRIDGE_URL, POMOVI_BRIDGE_TOKEN).</p>');
+      html.push('<p class="note">The Pomami bridge is not configured yet (POMAMI_BRIDGE_URL, POMAMI_BRIDGE_TOKEN).</p>');
     } else if (!website) {
       html.push('<p class="note">No website to build a demo from.</p>');
     } else {
       html.push('<p class="note">Builds from ' + esc(website) + (venue.verified_url ? '' : ' (not verified)') + '.</p>',
-        '<button class="secondary" type="button" id="c-demo"' + (entry && entry.stage === 'do_not_contact' ? ' disabled' : '') + '>Create demo in Pomovi</button>');
+        '<button class="secondary" type="button" id="c-demo"' + (entry && entry.stage === 'do_not_contact' ? ' disabled' : '') + '>Create demo in Pomami</button>');
     }
     if (data.events.length) {
       html.push('<h3>History</h3><ul class="events">' + data.events.map(function (event) {
@@ -986,7 +986,7 @@
     });
     if ($('c-demo')) $('c-demo').addEventListener('click', function () {
       this.disabled = true;
-      send('/api/crm/demo', { venue_id: venue.id }, 'Demo requested in Pomovi.');
+      send('/api/crm/demo', { venue_id: venue.id }, 'Demo requested in Pomami.');
     });
   }
 

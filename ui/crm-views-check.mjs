@@ -143,7 +143,7 @@ try {
     started = await open(`/venues/${encodeURIComponent(venueId)}`);
     check("record: loads", await waitFor("!!document.querySelector('.record h1')"), `${Date.now() - started} ms`);
     const text = await evaluate("document.querySelector('.record').innerText");
-    check("record: groups", ["SALES", "CONTACTS", "TIMELINE", "IDENTITY", "WEBSITE AND VERIFICATION", "POMOVI DEMO"]
+    check("record: groups", ["SALES", "CONTACTS", "TIMELINE", "IDENTITY", "WEBSITE AND VERIFICATION", "POMAMI DEMO"]
       .every((heading) => text.toUpperCase().includes(heading)));
     check("record: contact and touch shown", /Visit[\s\S]*with/.test(text), text.match(/Visit[^\n]*/)?.[0] || "");
     await shot("record");
