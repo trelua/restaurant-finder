@@ -21,7 +21,7 @@ undecided, 7,417 unreachable, 60,955 not checked, 69,189 no website.
 
 ## Track 1: online lead CRM (primary)
 
-Pomovi was renamed **Pomami** (2026-11-15; `../pomami/docs/plans/pomami-rename.md`).
+Pomovi was renamed **Pomami** (2026-11-15; `../pomami/docs/archive/pomami-rename.md`).
 The app says Pomami and reads `POMAMI_BRIDGE_URL`, `POMAMI_BRIDGE_TOKEN` and
 `POMAMI_INBOUND_TOKEN`, each falling back to its `POMOVI_*` name. Production keeps the
 `POMOVI_*` names: Vercel stores all three as sensitive, so they can't be copied, and new
