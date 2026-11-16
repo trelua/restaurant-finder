@@ -7,10 +7,10 @@
       <stop stop-color="#fffefa" stop-opacity=".65"/><stop offset="1" stop-color="#fffefa" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="red" x1=".16" y1="0" x2=".85" y2="1">
-      <stop stop-color="#a5507e"/><stop offset=".38" stop-color="#8c3a69"/><stop offset=".72" stop-color="#742c58"/><stop offset="1" stop-color="#5c2047"/>
+      <stop stop-color="#c4e27a"/><stop offset=".38" stop-color="#a9d05a"/><stop offset=".72" stop-color="#8fbb43"/><stop offset="1" stop-color="#76a232"/>
     </linearGradient>
     <radialGradient id="red-light" cx=".22" cy=".21" r=".85">
-      <stop stop-color="#e08fb8" stop-opacity=".18"/><stop offset=".65" stop-color="#e08fb8" stop-opacity="0"/>
+      <stop stop-color="#f1ffc4" stop-opacity=".18"/><stop offset=".65" stop-color="#f1ffc4" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="green" x1=".15" y1="0" x2=".75" y2="1">
       <stop stop-color="#34702e"/><stop offset=".45" stop-color="#245d29"/><stop offset="1" stop-color="#154421"/>
