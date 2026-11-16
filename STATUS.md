@@ -64,7 +64,9 @@ and verified locally (commits `cd45004`, `4f5785a`, `c542dbe`) and **deployed on
 - Data: migration `0002` (`contacts`, `pipeline_events.contact_id`, `saved_views`),
   `lib/crm-records.mjs`, backups include the new tables.
 - Installable app (2026-09-28, operator request): `web/app/manifest.ts`, a tomato icon
-  (`web/app/icon.svg`, `apple-icon.png`, `public/icons/`), iOS web-app metadata. No
+  (`web/app/icon.svg`, `apple-icon.png`, `public/icons/`), iOS web-app metadata. The
+  icon is Pomami's tomato in light green (2026-11-16), drawn by `npx tsx
+  scripts/brand-icons.ts finder <dir>` in the `pomami` repo. No
   service worker: every page is live data behind sign-in. `proxy.ts` lets the manifest
   and icons through signed out, since browsers fetch them without the session cookie.
 - `PRIVACY.md` covers venue contacts (business data only, notice at first contact,

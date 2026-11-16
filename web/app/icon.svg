@@ -1,17 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="112 145 1000 1000">
   <defs>
-    <radialGradient id="flesh" cx="0.38" cy="0.34" r="0.75">
-      <stop offset="0" stop-color="#ff7a5c"/>
-      <stop offset="0.55" stop-color="#e5322d"/>
-      <stop offset="1" stop-color="#b3171d"/>
+    <linearGradient id="ivory" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf2"/><stop offset=".55" stop-color="#fcf2e5"/><stop offset="1" stop-color="#f0dfcd"/>
+    </linearGradient>
+    <radialGradient id="porcelain" cx=".35" cy=".25" r=".85">
+      <stop stop-color="#fffefa" stop-opacity=".65"/><stop offset="1" stop-color="#fffefa" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="red" x1=".16" y1="0" x2=".85" y2="1">
+      <stop stop-color="#c4e27a"/><stop offset=".38" stop-color="#a9d05a"/><stop offset=".72" stop-color="#8fbb43"/><stop offset="1" stop-color="#76a232"/>
+    </linearGradient>
+    <radialGradient id="red-light" cx=".22" cy=".21" r=".85">
+      <stop stop-color="#f1ffc4" stop-opacity=".18"/><stop offset=".65" stop-color="#f1ffc4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="green" x1=".15" y1="0" x2=".75" y2="1">
+      <stop stop-color="#34702e"/><stop offset=".45" stop-color="#245d29"/><stop offset="1" stop-color="#154421"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2=".7" y2="1">
+      <stop stop-color="#fff6d9" stop-opacity=".58"/><stop offset=".45" stop-color="#fff6d9" stop-opacity=".12"/><stop offset=".7" stop-color="#fff6d9" stop-opacity="0"/><stop offset="1" stop-color="#61110c" stop-opacity=".24"/>
+    </linearGradient>
+    <filter id="tomato-shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="16"/>
+      <feOffset dy="20" result="offset-shadow"/>
+      <feFlood flood-color="#784435" flood-opacity=".27"/>
+      <feComposite in2="offset-shadow" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="leaf-shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+      <feOffset dx="1" dy="8" result="leaf-offset"/>
+      <feFlood flood-color="#46180e" flood-opacity=".40"/>
+      <feComposite in2="leaf-offset" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <path id="tile" d="M 308 28 H 946 C 1139 28 1226 115 1226 308 V 946 C 1226 1139 1139 1226 946 1226 H 308 C 115 1226 28 1139 28 946 V 308 C 28 115 115 28 308 28 Z"/>
+    <path id="tomato" d="M 330 402 C 343 301 455 207 565 193 C 676 178 764 225 803 322 Q 807 331 814 330 C 932 320 1021 419 1040 532 C 1056 622 1042 689 994 741 Q 990 745 991 753 C 1005 870 929 981 817 1019 C 756 1040 704 1035 660 1014 Q 653 1010 647 1015 C 578 1064 481 1063 408 1033 C 319 997 273 908 273 811 Q 273 805 267 801 C 204 751 180 687 185 608 C 191 520 242 447 323 407 Q 329 405 330 402 Z"/>
+    <path id="calyx" d="M 579 547 C 567 484 589 423 631 381 C 655 357 685 337 709 326 Q 716 323 717 330 C 722 410 706 496 675 550 C 754 498 844 510 908 569 Q 917 577 910 583 C 853 618 772 647 705 633 C 768 678 801 752 800 824 Q 800 833 792 830 C 712 807 646 750 621 678 C 603 751 543 815 453 845 Q 446 848 445 839 C 432 756 465 682 540 625 C 461 646 370 616 325 550 Q 320 543 327 538 C 409 483 505 480 579 547 Z"/>
   </defs>
-  <rect width="512" height="512" rx="112" fill="#fff4e6"/>
-  <g transform="translate(256 256) scale(1) translate(-256 -256)">
-    <path d="M256 150C150 138 76 196 76 286c0 92 80 150 180 150s180-58 180-150c0-90-74-148-180-136z" fill="url(#flesh)"/>
-    <path d="M190 170c-26 52-30 150 8 250M322 170c26 52 30 150-8 250" fill="none" stroke="#a3131a" stroke-opacity="0.22" stroke-width="10" stroke-linecap="round"/>
-    <ellipse cx="170" cy="238" rx="40" ry="22" transform="rotate(-32 170 238)" fill="#ffffff" fill-opacity="0.42"/>
-    <path d="M256 176 L214 132 L244 150 L230 96 L256 136 L282 96 L268 150 L298 132 L256 176 L330 170 L280 188 L256 200 L232 188 L182 170 Z" fill="#2f9e44" stroke="#2f9e44" stroke-width="10" stroke-linejoin="round"/>
-    <path d="M256 150c0-24 6-44 22-62" fill="none" stroke="#237a34" stroke-width="16" stroke-linecap="round"/>
+  <g id="tomato-body" filter="url(#tomato-shadow)">
+    <use href="#tomato" fill="url(#red)"/>
+    <use href="#tomato" fill="url(#red-light)"/>
+    <use href="#tomato" fill="none" stroke="url(#rim)" stroke-width="2.4"/>
+  </g>
+  <g id="leaves" filter="url(#leaf-shadow)">
+    <use href="#calyx" fill="url(#green)"/>
+    <use href="#calyx" fill="none" stroke="url(#rim)" stroke-width="1.8" stroke-linejoin="round"/>
   </g>
 </svg>
